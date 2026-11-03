@@ -1,259 +1,168 @@
 
-/* =====================================
-   NUENG PORTFOLIO — JAVASCRIPT
-   ===================================== */
-
+// =====================================
 // 1. MOBILE MENU
+// =====================================
+
 const menuToggle = document.getElementById("menuToggle");
-const navigation = document.querySelector(".topbar nav");
+const mainNav = document.getElementById("mainNav");
 
-if (menuToggle && navigation) {
-  menuToggle.addEventListener("click", () => {
-    navigation.classList.toggle("open");
-    menuToggle.textContent =
-      navigation.classList.contains("open") ? "✕" : "☰";
+menuToggle.addEventListener("click", () => {
+  mainNav.classList.toggle("open");
+});
+
+mainNav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("open");
   });
+});
 
-  navigation.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      navigation.classList.remove("open");
-      menuToggle.textContent = "☰";
-    });
-  });
-}
 
+// =====================================
 // 2. TYPING EFFECT
-const typingElement = document.getElementById("typing");
+// =====================================
 
-if (typingElement) {
-  const words = [
-    "Computer Science Student",
-    "Future Programmer",
-    "Creative Thinker",
-    "Technology Enthusiast"
-  ];
+const typingText = document.getElementById("typingText");
 
-  let wordIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
+const words = [
+  "Computer Science Enthusiast",
+  "Future Programmer",
+  "Creative Thinker",
+  "Technology Explorer"
+];
 
-  function typeEffect() {
-    const currentWord = words[wordIndex];
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-    typingElement.textContent = currentWord.substring(0, charIndex);
+function typeEffect() {
+  const currentWord = words[wordIndex];
 
-    if (!deleting) {
-      charIndex++;
+  if (!deleting) {
+    typingText.textContent = currentWord.substring(0, charIndex + 1);
+    charIndex++;
 
-      if (charIndex > currentWord.length) {
-        deleting = true;
-        setTimeout(typeEffect, 1200);
-        return;
-      }
-    } else {
-      charIndex--;
-
-      if (charIndex < 0) {
-        deleting = false;
-        charIndex = 0;
-        wordIndex = (wordIndex + 1) % words.length;
-      }
+    if (charIndex === currentWord.length) {
+      deleting = true;
+      setTimeout(typeEffect, 1800);
+      return;
     }
+  } else {
+    typingText.textContent = currentWord.substring(0, charIndex - 1);
+    charIndex--;
 
-    setTimeout(typeEffect, deleting ? 45 : 85);
+    if (charIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+    }
   }
 
-  typeEffect();
+  setTimeout(typeEffect, deleting ? 90 : 150);
 }
 
-// 3. SCROLL PROGRESS
-const progressBar = document.querySelector(".progress");
+typeEffect();
 
-function updateProgress() {
-  if (!progressBar) return;
 
-  const scrollTop = window.scrollY;
-  const scrollHeight =
+// =====================================
+// 3. SCROLL REVEAL
+// =====================================
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+
+// =====================================
+// 4. SCROLL PROGRESS
+// =====================================
+
+const progressBar = document.getElementById("scrollProgress");
+
+window.addEventListener("scroll", () => {
+  const scrollable =
     document.documentElement.scrollHeight - window.innerHeight;
 
-  const percentage =
-    scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  const progress =
+    scrollable > 0
+      ? (window.scrollY / scrollable) * 100
+      : 0;
 
-  progressBar.style.width = percentage + "%";
-}
+  progressBar.style.width = progress + "%";
+});
 
-window.addEventListener("scroll", updateProgress);
-updateProgress();
 
-// 4. SCROLL REVEAL ANIMATION
-const revealElements = document.querySelectorAll(".reveal");
-
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.12
-    }
-  );
-
-  revealElements.forEach(element => observer.observe(element));
-} else {
-  revealElements.forEach(element => element.classList.add("show"));
-}
-
+// =====================================
 // 5. DARK / LIGHT MODE
+// =====================================
+
 const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+
+  const isLight = document.body.classList.contains("light");
+
+  themeToggle.textContent = isLight ? "☾" : "☼";
+
+  localStorage.setItem("nueng-theme", isLight ? "light" : "dark");
+});
 
 const savedTheme = localStorage.getItem("nueng-theme");
 
-if (savedTheme === "dark") {
-  document.body.classList.add("dark");
+if (savedTheme === "light") {
+  document.body.classList.add("light");
+  themeToggle.textContent = "☾";
 }
 
-function updateThemeIcon() {
-  if (!themeToggle) return;
 
-  themeToggle.textContent =
-    document.body.classList.contains("dark") ? "☀" : "☾";
-}
+// =====================================
+// 6. GITHUB REPOSITORIES
+// =====================================
 
-updateThemeIcon();
-
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-
-    const currentTheme =
-      document.body.classList.contains("dark") ? "dark" : "light";
-
-    localStorage.setItem("nueng-theme", currentTheme);
-    updateThemeIcon();
-  });
-}
-
-// 6. PROFILE IMAGE UPLOAD
-const profileUpload = document.getElementById("profileUpload");
-const profileImage = document.getElementById("profileImage");
-
-const savedProfile = localStorage.getItem("nueng-profile-image");
-
-if (savedProfile && profileImage) {
-  profileImage.src = savedProfile;
-}
-
-if (profileUpload && profileImage) {
-  profileUpload.addEventListener("change", event => {
-    const file = event.target.files[0];
-
-    if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-      alert("กรุณาเลือกไฟล์รูปภาพ");
-      return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      alert("รูปภาพต้องมีขนาดไม่เกิน 5 MB");
-      return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      profileImage.src = reader.result;
-
-      try {
-        localStorage.setItem(
-          "nueng-profile-image",
-          reader.result
-        );
-      } catch (error) {
-        alert("พื้นที่จัดเก็บรูปภาพไม่เพียงพอ กรุณาใช้รูปขนาดเล็กลง");
-      }
-    };
-
-    reader.readAsDataURL(file);
-  });
-}
-
-// 7. COPY EMAIL
-const copyButton = document.getElementById("copyEmail");
-const toast = document.getElementById("toast");
-
-if (copyButton) {
-  copyButton.addEventListener("click", async () => {
-    const email = "YOUR_EMAIL@example.com";
-
-    try {
-      await navigator.clipboard.writeText(email);
-
-      if (toast) {
-        toast.textContent = "Email copied successfully!";
-        toast.classList.add("show");
-
-        setTimeout(() => {
-          toast.classList.remove("show");
-        }, 2200);
-      }
-    } catch (error) {
-      alert("ไม่สามารถคัดลอกได้ กรุณาคัดลอกอีเมลด้วยตนเอง");
-    }
-  });
-}
-
-// 8. GITHUB REPOSITORIES
 const githubContainer = document.getElementById("githubRepos");
-const githubUsername = "YOUR_GITHUB_USERNAME";
 
-async function loadGithubRepositories() {
-  if (!githubContainer) return;
-
-  githubContainer.innerHTML = "<p>Loading repositories...</p>";
-
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`
-    );
-
+fetch("https://api.github.com/users/wannapa1/repos?sort=updated&per_page=6")
+  .then(response => {
     if (!response.ok) {
-      throw new Error("GitHub API error");
+      throw new Error("GitHub data unavailable");
     }
-
-    const repositories = await response.json();
-
-    if (!repositories.length) {
-      githubContainer.innerHTML =
-        "<p>ยังไม่มี Repository ที่เปิดเผยต่อสาธารณะ</p>";
+    return response.json();
+  })
+  .then(repos => {
+    if (!repos.length) {
+      githubContainer.innerHTML = "<p>ยังไม่มี Repository ที่แสดง</p>";
       return;
     }
 
-    githubContainer.innerHTML = repositories.map(repo => `
-      <article class="github-card">
-        <span>GITHUB REPOSITORY</span>
-        <h3>${escapeHTML(repo.name)}</h3>
-        <p>${escapeHTML(repo.description || "No description provided.")}</p>
-        <div>
-          <small>${escapeHTML(repo.language || "Code")}</small>
-          <small>★ ${repo.stargazers_count}</small>
-        </div>
-        <a href="${repo.html_url}" target="_blank" rel="noopener">
-          VIEW PROJECT ↗
+    githubContainer.innerHTML = repos.map(repo => `
+      <article class="repo-card">
+        <h4>${escapeHTML(repo.name)}</h4>
+        <p>${escapeHTML(repo.description || "ไม่มีคำอธิบาย")}</p>
+        <p>★ ${repo.stargazers_count} &nbsp; • &nbsp; ${escapeHTML(repo.language || "Code")}</p>
+        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+          View Repository ↗
         </a>
       </article>
     `).join("");
-
-  } catch (error) {
-    githubContainer.innerHTML =
-      "<p>ไม่สามารถโหลด Repository ได้ในขณะนี้</p>";
-  }
-}
+  })
+  .catch(() => {
+    githubContainer.innerHTML = `
+      <p>ไม่สามารถโหลด Repository ได้ในขณะนี้</p>
+      <a href="https://github.com/wannapa1" target="_blank" rel="noopener noreferrer">
+        เปิด GitHub โดยตรง ↗
+      </a>
+    `;
+  });
 
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({
@@ -261,29 +170,26 @@ function escapeHTML(value) {
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
-    "'": "&#39;"
+    "'": "&#039;"
   })[char]);
 }
 
-if (githubUsername !== "YOUR_GITHUB_USERNAME") {
-  loadGithubRepositories();
-}
 
-// 9. CURRENT YEAR
-const yearElement = document.getElementById("currentYear");
+// =====================================
+// 7. CURRENT YEAR
+// =====================================
 
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
-}
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
 
-// 10. BACK TO TOP
-const backToTop = document.querySelector('a[href="#home"]');
 
-if (backToTop) {
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-}
+// =====================================
+// 8. IMAGE FALLBACK
+// =====================================
+
+const profileImage = document.querySelector(".profile-photo img");
+
+profileImage.addEventListener("error", () => {
+  profileImage.style.display = "none";
+  document.getElementById("photoFallback").style.display = "grid";
+});
