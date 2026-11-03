@@ -1,15 +1,46 @@
 
-// =============================
-// NUENG PORTFOLIO JAVASCRIPT
-// =============================
+// MOBILE MENU
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
 
-// 1. Typing animation
-const typingText = document.getElementById("typingText");
+menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("show");
+});
 
+// CLOSE MENU AFTER CLICK
+document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        nav.classList.remove("show");
+    });
+});
+
+// DARK / LIGHT MODE
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    themeBtn.textContent =
+        document.body.classList.contains("light") ? "☾" : "☼";
+
+    localStorage.setItem(
+        "theme",
+        document.body.classList.contains("light") ? "light" : "dark"
+    );
+});
+
+// REMEMBER THEME
+if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+    themeBtn.textContent = "☾";
+}
+
+// TYPING ANIMATION
 const words = [
-  "Computer Scientist",
-  "Problem Solver",
-  "Technology Creator"
+    "Computer Scientist",
+    "Web Developer",
+    "Programmer",
+    "Problem Solver"
 ];
 
 let wordIndex = 0;
@@ -17,154 +48,69 @@ let charIndex = 0;
 let deleting = false;
 
 function typeEffect() {
-  if (!typingText) return;
+    const currentWord = words[wordIndex];
 
-  const word = words[wordIndex];
+    document.getElementById("typing").textContent =
+        currentWord.substring(0, charIndex);
 
-  if (!deleting) {
-    charIndex++;
-    typingText.textContent = word.substring(0, charIndex);
-
-    if (charIndex === word.length) {
-      deleting = true;
-      setTimeout(typeEffect, 1200);
-      return;
+    if (!deleting && charIndex < currentWord.length) {
+        charIndex++;
+    } else if (deleting && charIndex > 0) {
+        charIndex--;
+    } else if (!deleting) {
+        deleting = true;
+        setTimeout(typeEffect, 1000);
+        return;
+    } else {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
     }
-  } else {
-    charIndex--;
-    typingText.textContent = word.substring(0, charIndex);
 
-    if (charIndex === 0) {
-      deleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-    }
-  }
-
-  setTimeout(typeEffect, deleting ? 45 : 85);
+    setTimeout(typeEffect, deleting ? 50 : 100);
 }
 
 typeEffect();
 
+// GALLERY UPLOAD
+const galleryInput = document.getElementById("galleryInput");
+const galleryContainer = document.getElementById("galleryContainer");
 
-// 2. Mobile menu
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+galleryInput.addEventListener("change", function() {
+    const files = [...this.files];
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
+    files.forEach(file => {
+        if (!file.type.startsWith("image/")) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const img = document.createElement("img");
+            img.src = event.target.result;
+            img.alt = file.name;
+
+            galleryContainer.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+    });
 });
 
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-  });
-});
-
-
-// 3. Dark / Light mode
-const themeToggle = document.getElementById("themeToggle");
-
-const savedTheme = localStorage.getItem("nueng-theme");
-
-if (savedTheme === "light") {
-  document.body.classList.add("light-theme");
-  themeToggle.textContent = "☾";
-}
-
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("light-theme");
-
-  const isLight = document.body.classList.contains("light-theme");
-
-  localStorage.setItem(
-    "nueng-theme",
-    isLight ? "light" : "dark"
-  );
-
-  themeToggle.textContent = isLight ? "☾" : "☼";
-});
-
-
-// 4. Scroll reveal animation
+// SCROLL REVEAL
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.12
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(
+    ".section, .project-card, .skill, .profile"
+).forEach(element => {
+    element.style.opacity = "0";
+    element.style.transform = "translateY(25px)";
+    element.style.transition = "all .7s ease";
+
+    observer.observe(element);
 });
-
-document.querySelectorAll(".reveal").forEach(element => {
-  observer.observe(element);
-});
-
-
-// 5. Profile card mouse tilt
-const profileCard = document.querySelector(".profile-card");
-
-if (profileCard && window.matchMedia("(pointer:fine)").matches) {
-  profileCard.addEventListener("mousemove", event => {
-    const rect = profileCard.getBoundingClientRect();
-
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-    profileCard.style.transform =
-      `rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
-  });
-
-  profileCard.addEventListener("mouseleave", () => {
-    profileCard.style.transform = "rotateY(0) rotateX(0)";
-  });
-}
-
-
-// 6. Copy email
-const copyButton = document.getElementById("copyEmail");
-const toast = document.getElementById("toast");
-
-const email = "cxx1382@gmail.com";
-
-copyButton.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(email);
-    toast.textContent = "คัดลอกอีเมลเรียบร้อยแล้ว!";
-  } catch {
-    toast.textContent = email;
-  }
-
-  toast.classList.add("show");
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2200);
-});
-
-
-// 7. Active navigation on scroll
-const sections = document.querySelectorAll("main section[id]");
-const navItems = document.querySelectorAll("nav a");
-
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navItems.forEach(link => {
-        link.classList.toggle(
-          "active",
-          link.getAttribute("href") === `#${entry.target.id}`
-        );
-      });
-    }
-  });
-}, {
-  rootMargin: "-35% 0px -55% 0px"
-});
-
-sections.forEach(section => {
-  sectionObserver.observe(section);
-});
-
-console.log("NUENG PORTFOLIO — HTML CSS JavaScript");
