@@ -2,466 +2,303 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wannapa Intarat - NUENG | Personal Portfolio">
-    <title>NUENG | Creative Developer Portfolio</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUENG | Wannapa Intarat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
 
-    <!-- Background -->
-    <div class="background-glow"></div>
+<header class="navbar">
+  <a href="#home" class="logo">N<span>.</span></a>
+  <button class="menu-toggle" id="menuToggle">☰</button>
+  <nav id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#awards">Awards</a>
+    <a href="#activities">Activities</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button id="themeToggle" class="theme-btn">☼</button>
+</header>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <a href="#home" class="logo">NUENG<span>.</span></a>
+<main>
+  <section class="hero section" id="home">
+    <div class="hero-content reveal">
+      <p class="eyebrow">WELCOME TO MY PORTFOLIO</p>
+      <p class="intro">HELLO, I'M</p>
+      <h1>WANNA<span>PA.</span></h1>
+      <h2>Future <span id="typingText">Computer Scientist</span></h2>
+      <p class="description">
+        หนูชื่อวรรณภาณ์ อินทรัตน์ เป็นนักเรียนที่สนใจด้านวิทยาการคอมพิวเตอร์
+        ชื่นชอบการเขียนโปรแกรม การคิดวิเคราะห์ และการสร้างเทคโนโลยี
+        เพื่อนำไปประยุกต์ใช้แก้ปัญหาในชีวิตจริง
+      </p>
+      <div class="buttons">
+        <a href="#projects" class="btn primary">Explore My Work ↗</a>
+        <a href="#about" class="btn secondary">About Me</a>
+      </div>
+      <div class="hero-meta">
+        <span>01 Curious Mind</span>
+        <span>02 Creative Builder</span>
+        <span>03 Lifelong Learner</span>
+      </div>
+    </div>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-            ☰
-        </button>
-
-        <div class="nav-links" id="navLinks">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#journey">Journey</a>
-            <a href="#contact">Contact</a>
+    <div class="hero-image reveal">
+      <div class="orbit"></div>
+      <div class="profile-card">
+        <p class="card-top">STUDENT PORTFOLIO / NO.27</p>
+        <img src="assets/profile.jpg" alt="Wannapa Intarat"
+          onerror="this.style.display='none'">
+        <h3>Wannapa Intarat</h3>
+        <p>Computer Science Enthusiast</p>
+        <div class="tags">
+          <span>PROGRAMMING</span>
+          <span>AI</span>
+          <span>TECH</span>
         </div>
+      </div>
+      <div class="floating">✳ KEEP LEARNING</div>
+    </div>
+  </section>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            ☾
-        </button>
-    </nav>
+  <section class="section" id="about">
+    <div class="section-title reveal">
+      <p>01 / ABOUT ME</p>
+      <h2>A little story <span>about me.</span></h2>
+      <p>จุดเริ่มต้น ความสนใจ และสิ่งที่อยากพัฒนาต่อไป</p>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <div class="about-grid">
+      <article class="glass about-text reveal">
+        <h3>My Story ✳</h3>
+        <p>
+          จุดเริ่มต้นของหนูมาจากความสงสัยว่า
+          สิ่งที่เราใช้งานอยู่ทุกวันทำงานอย่างไร
+          จากความสงสัยนี้ หนูจึงเริ่มเรียนรู้การเขียนโปรแกรมด้วยตนเอง
+          ผ่านสื่อออนไลน์ และค้นพบว่าตัวเองมีความสุขกับการคิดหาวิธีแก้ปัญหา
+        </p>
+        <p>
+          หนูพยายามหาประสบการณ์จากการลงมือทำ ทั้งการแข่งขันเขียนโปรแกรม
+          การแข่งขันหุ่นยนต์ การเข้าค่าย และการทำโครงงาน
+          ประสบการณ์เหล่านี้ทำให้หนูได้ฝึกคิดเป็นขั้นตอน วิเคราะห์ปัญหา
+          แก้ไขข้อผิดพลาด และทำงานร่วมกับผู้อื่น
+        </p>
+        <p>
+          หนูอยากศึกษาวิทยาการคอมพิวเตอร์ให้ลึกยิ่งขึ้น
+          เพื่อพัฒนาความรู้และทักษะในการสร้างเทคโนโลยีที่เป็นประโยชน์ต่อผู้อื่น
+        </p>
+        <div class="signature">Wannapa Intarat / NUENG</div>
+      </article>
 
-        <div class="hero-content">
-            <div class="status">
-                <span class="status-dot"></span>
-                Welcome to my creative space
-            </div>
-
-            <p class="hero-small">HELLO, I'M</p>
-
-            <h1>
-                Wannapa<br>
-                <span>Intarat.</span>
-            </h1>
-
-            <h2>
-                I'm interested in
-                <span id="typing"></span>
-            </h2>
-
-            <p class="hero-description">
-                หนูชื่อหนึ่ง เป็นนักเรียนที่หลงใหลในโลกของเทคโนโลยี
-                ชอบเรียนรู้ ทดลองเขียนโปรแกรม และสร้างสรรค์สิ่งใหม่ ๆ
-                เพราะเชื่อว่าไอเดียเล็ก ๆ สามารถพัฒนาเป็นสิ่งที่ยิ่งใหญ่ได้
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#projects" class="btn-primary">
-                    Explore My Work ↗
-                </a>
-
-                <a href="#contact" class="btn-outline">
-                    Contact Me
-                </a>
-            </div>
-
-            <div class="hero-social">
-                <span>BASED IN THAILAND</span>
-                <span>✦</span>
-                <span>FUTURE COMPUTER SCIENTIST</span>
-            </div>
+      <div class="about-side">
+        <div class="glass info-card reveal">
+          <small>EDUCATION</small>
+          <h3>High School Student</h3>
+          <p>โรงเรียนทุ่งใหญ่เฉลิมราชานุสรณ์ รัชมังคลาภิเษก</p>
         </div>
-
-        <div class="hero-visual">
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-
-            <div class="profile-card">
-                <div class="card-top">
-                    <span>✦ PERSONAL PROFILE</span>
-                    <span>01 / 26</span>
-                </div>
-
-                <div class="profile-icon">N.</div>
-
-                <h3>Creative Mind.</h3>
-                <p>Curious by nature, creative by passion.</p>
-
-                <div class="profile-tags">
-                    <span>Programming</span>
-                    <span>Technology</span>
-                    <span>Learning</span>
-                </div>
-
-                <div class="card-bottom">
-                    <span>WAN NAPA INTARAT</span>
-                    <span>NUENG © 2026</span>
-                </div>
-            </div>
-
-            <div class="floating-badge badge-top">{"</>"}</div>
-            <div class="floating-badge badge-bottom">✳ AI</div>
+        <div class="glass info-card reveal">
+          <small>FIELD OF INTEREST</small>
+          <h3>Computer Science</h3>
+          <p>Programming · AI · Problem Solving</p>
         </div>
-
-        <a href="#about" class="scroll-down">
-            SCROLL TO EXPLORE ↓
-        </a>
-
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-
-        <div class="section-heading">
-            <span class="section-label">01 — ABOUT ME</span>
-            <h2>Getting to know <span>me.</span></h2>
+        <div class="glass info-card reveal">
+          <small>MY DIRECTION</small>
+          <h3>Technology Creator</h3>
+          <p>เรียนรู้ ทดลอง และพัฒนาสิ่งใหม่</p>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="about-grid">
+  <section class="section" id="projects">
+    <div class="section-title reveal">
+      <p>02 / SELECTED WORKS</p>
+      <h2>Things I've <span>built.</span></h2>
+      <p>ผลงานจากการเรียนรู้และการลงมือทำ</p>
+    </div>
 
-            <div class="about-main">
-                <span class="about-symbol">✳</span>
-                <h3>More than just a student.</h3>
-
-                <p>
-                    หนูเป็นนักเรียนชั้นมัธยมศึกษาปีที่ 6
-                    ที่สนใจด้านวิทยาการคอมพิวเตอร์และเทคโนโลยี
-                    โดยเฉพาะการเขียนโปรแกรมและการพัฒนาระบบ
-                </p>
-
-                <p>
-                    หนูชอบเรียนรู้ผ่านการลงมือทำ
-                    แม้บางครั้งจะเจอปัญหาหรือข้อผิดพลาด
-                    แต่หนูมองว่าสิ่งเหล่านี้เป็นโอกาสในการพัฒนาตัวเอง
-                </p>
-
-                <p>
-                    เป้าหมายของหนูคือการนำความรู้ด้านคอมพิวเตอร์
-                    ไปสร้างสรรค์เทคโนโลยีที่ช่วยแก้ปัญหาในชีวิตจริง
-                </p>
-            </div>
-
-            <div class="about-side">
-
-                <div class="info-card">
-                    <span>✦</span>
-                    <div>
-                        <small>MY INTEREST</small>
-                        <h4>Computer Science</h4>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <span>⌘</span>
-                    <div>
-                        <small>MY PASSION</small>
-                        <h4>Programming</h4>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <span>◎</span>
-                    <div>
-                        <small>MY MINDSET</small>
-                        <h4>Never Stop Learning</h4>
-                    </div>
-                </div>
-
-                <div class="quote-card">
-                    "Great things begin with curiosity."
-                </div>
-
-            </div>
+    <div class="project-grid">
+      <article class="glass project-card reveal">
+        <div class="project-cover aegis">
+          <span>PROJECT 01 / AI</span>
+          <strong>AEGIS</strong>
+          <small>HELPING YOU CARE FOR YOUR WOUNDS</small>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="section" id="skills">
-
-        <div class="section-heading">
-            <span class="section-label">02 — MY SKILLS</span>
-            <h2>Things I'm <span>learning.</span></h2>
-            <p>ทักษะและความสามารถที่หนูกำลังพัฒนาอย่างต่อเนื่อง</p>
+        <div class="project-content">
+          <h3>Aegis — AI Wound Analysis</h3>
+          <p>
+            เว็บไซต์ที่นำเทคโนโลยี AI มาช่วยวิเคราะห์ประเภทของบาดแผลจากรูปภาพ
+            พร้อมแนะนำวิธีปฐมพยาบาลเบื้องต้น
+            เพื่อช่วยให้ผู้ใช้เข้าใจบาดแผลและดูแลตนเองได้เหมาะสม
+          </p>
+          <div class="tags">
+            <span>AI</span><span>Image Classification</span>
+            <span>Dataset</span><span>Web Development</span>
+          </div>
         </div>
+      </article>
 
-        <div class="skills-grid">
-
-            <div class="skill-card">
-                <div class="skill-icon">⌘</div>
-                <h3>Web Development</h3>
-                <p>พื้นฐานการพัฒนาเว็บไซต์และออกแบบหน้าเว็บ</p>
-                <div class="skill-tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">◈</div>
-                <h3>Programming</h3>
-                <p>ฝึกคิดอย่างเป็นระบบและแก้ปัญหาด้วยโค้ด</p>
-                <div class="skill-tags">
-                    <span>Python</span>
-                    <span>Logic</span>
-                    <span>Problem Solving</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">✳</div>
-                <h3>Artificial Intelligence</h3>
-                <p>เรียนรู้การประยุกต์ใช้ AI กับการพัฒนาระบบ</p>
-                <div class="skill-tags">
-                    <span>AI</span>
-                    <span>LLM</span>
-                    <span>Teachable Machine</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">⌁</div>
-                <h3>Cybersecurity</h3>
-                <p>เรียนรู้พื้นฐานความปลอดภัยทางไซเบอร์</p>
-                <div class="skill-tags">
-                    <span>CTF</span>
-                    <span>Web Security</span>
-                    <span>GitHub</span>
-                </div>
-            </div>
-
+      <article class="glass project-card reveal">
+        <div class="project-cover network">
+          <span>PROJECT 02 / NETWORK</span>
+          <strong>WILDNET</strong>
+          <small>METROPOLIS / INTERNAL NETWORK</small>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-
-        <div class="section-heading">
-            <span class="section-label">03 — SELECTED WORKS</span>
-            <h2>Things I've <span>created.</span></h2>
-            <p>ผลงานและประสบการณ์ที่ทำให้หนูเติบโตขึ้น</p>
+        <div class="project-content">
+          <h3>WILDNET METROPOLIS</h3>
+          <p>
+            มินิโปรเจกต์ออกแบบระบบเครือข่ายภายในองค์กร
+            โดยจัดสรร IP Address แบ่ง Subnet ออกแบบ Network Topology
+            และตั้งค่า Router กับ Switch พร้อมทดสอบการสื่อสาร
+          </p>
+          <div class="tags">
+            <span>IP Address</span><span>Subnetting</span>
+            <span>Router & Switch</span><span>Wireshark</span>
+          </div>
         </div>
+      </article>
+    </div>
+  </section>
 
-        <div class="projects-grid">
+  <section class="section" id="awards">
+    <div class="section-title reveal">
+      <p>03 / ACHIEVEMENTS</p>
+      <h2>Milestones & <span>Awards.</span></h2>
+      <p>ทุกประสบการณ์คือโอกาสในการพัฒนาตัวเอง</p>
+    </div>
 
-            <article class="project-card featured">
-                <div class="project-visual aegis-visual">
-                    <span class="project-number">PROJECT 01</span>
-                    <div class="project-art">
-                        <span>✚</span>
-                        <h3>AEGIS</h3>
-                        <p>Helping You Care for Your Wounds</p>
-                    </div>
-                    <span class="project-type">AI HEALTHCARE</span>
-                </div>
-
-                <div class="project-info">
-                    <span class="project-category">AI APPLICATION</span>
-                    <h3>Aegis — Wound Care Assistant</h3>
-                    <p>
-                        แนวคิดการนำ AI มาช่วยประเมินบาดแผลเบื้องต้น
-                        และให้คำแนะนำในการดูแลแผล
-                        เพื่อช่วยให้ผู้ใช้งานเข้าถึงข้อมูลได้สะดวกขึ้น
-                    </p>
-                    <div class="project-tags">
-                        <span>OpenAI API</span>
-                        <span>AI</span>
-                        <span>HTML / CSS / JS</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div class="project-visual cyber-visual">
-                    <span class="project-number">ACTIVITY 02</span>
-                    <div class="cyber-art">
-                        <span>01</span>
-                        <span>10</span>
-                        <span>01</span>
-                        <h3>CYBER<br>TOP TALENT</h3>
-                        <p>THAILAND 2026</p>
-                    </div>
-                    <span class="project-type">CYBERSECURITY</span>
-                </div>
-
-                <div class="project-info">
-                    <span class="project-category">COMPETITION</span>
-                    <h3>Thailand Cyber Top Talent 2026</h3>
-                    <p>
-                        เข้าร่วมกิจกรรมการแข่งขันด้าน Cybersecurity
-                        ฝึกการค้นหาช่องโหว่ใน Web Application
-                        และ Mobile Application
-                        พร้อมพัฒนาทักษะการคิดวิเคราะห์และแก้ปัญหา
-                    </p>
-                    <div class="project-tags">
-                        <span>CTF</span>
-                        <span>Web Security</span>
-                        <span>Problem Solving</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div class="project-visual web-visual">
-                    <span class="project-number">PROJECT 03</span>
-                    <div class="web-art">
-                        <div class="browser-bar">● ● ●</div>
-                        <div class="browser-content">
-                            <span>NUENG.</span>
-                            <div class="browser-line"></div>
-                            <div class="browser-line short"></div>
-                            <div class="browser-button"></div>
-                        </div>
-                    </div>
-                    <span class="project-type">WEB DEVELOPMENT</span>
-                </div>
-
-                <div class="project-info">
-                    <span class="project-category">PERSONAL PROJECT</span>
-                    <h3>Personal Portfolio Website</h3>
-                    <p>
-                        สร้างเว็บไซต์ส่วนตัวด้วย HTML, CSS และ JavaScript
-                        เพื่อฝึกการเขียนโปรแกรม
-                        และนำเสนอประวัติ ผลงาน และทักษะของตัวเอง
-                    </p>
-                    <div class="project-tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-                </div>
-            </article>
-
+    <div class="timeline">
+      <article class="timeline-item reveal">
+        <strong>2026</strong>
+        <div>
+          <small>CYBERSECURITY COMPETITION</small>
+          <h3>Thailand Cyber Top Talent 2026</h3>
+          <p>เข้าร่วมการแข่งขันด้าน Cybersecurity ฝึกการคิดวิเคราะห์และแก้โจทย์ในรูปแบบ CTF</p>
         </div>
-    </section>
-
-    <!-- Journey Section -->
-    <section class="section" id="journey">
-
-        <div class="section-heading">
-            <span class="section-label">04 — MY JOURNEY</span>
-            <h2>Every step <span>matters.</span></h2>
-            <p>เส้นทางการเรียนรู้และการเติบโตของหนู</p>
+      </article>
+      <article class="timeline-item reveal">
+        <strong>2025</strong>
+        <div>
+          <small>ROBOTICS / SILVER MEDAL</small>
+          <h3>การแข่งขันหุ่นยนต์ระดับสูง</h3>
+          <p>ได้รับรางวัลระดับเหรียญเงิน ระดับชั้น ม.4–ม.6 งานศิลปหัตถกรรมนักเรียน ครั้งที่ 73 ปีการศึกษา 2568 ระดับเขตพื้นที่การศึกษา</p>
         </div>
-
-        <div class="timeline">
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">DISCOVER</span>
-                <div class="timeline-content">
-                    <h3>Discovering Technology</h3>
-                    <p>
-                        เริ่มสนใจเทคโนโลยีและค้นหาสิ่งที่ตัวเองชอบ
-                        จนได้รู้จักโลกของวิทยาการคอมพิวเตอร์
-                    </p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">LEARN</span>
-                <div class="timeline-content">
-                    <h3>Learning to Code</h3>
-                    <p>
-                        เริ่มฝึกเขียนโปรแกรม เรียนรู้ HTML, CSS,
-                        JavaScript และฝึกแก้ไขข้อผิดพลาดด้วยตัวเอง
-                    </p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">CREATE</span>
-                <div class="timeline-content">
-                    <h3>Building Aegis</h3>
-                    <p>
-                        นำความรู้ด้านเทคโนโลยีและ AI
-                        มาพัฒนาแนวคิดโครงงานที่ต้องการช่วยแก้ปัญหาในชีวิตจริง
-                    </p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">GROW</span>
-                <div class="timeline-content">
-                    <h3>My Next Chapter</h3>
-                    <p>
-                        มุ่งมั่นศึกษาต่อด้านคอมพิวเตอร์
-                        และพัฒนาตัวเองให้พร้อมสำหรับการสร้างสรรค์นวัตกรรมในอนาคต
-                    </p>
-                </div>
-            </div>
-
+      </article>
+      <article class="timeline-item reveal">
+        <strong>2025</strong>
+        <div>
+          <small>CYBERSECURITY / CTF</small>
+          <h3>Thailand Cyber Top Talent 2025</h3>
+          <p>เข้าร่วมการแข่งขัน Capture The Flag เรียนรู้หัวข้อ Web Application และ Mobile Application Security</p>
         </div>
-    </section>
-
-    <!-- Goals Section -->
-    <section class="section" id="goals">
-
-        <div class="goal-box">
-            <span class="section-label">05 — MY VISION</span>
-            <h2>Dream it.<br><span>Code it.</span><br>Make it real.</h2>
-            <p>
-                หนูอยากเติบโตเป็นคนที่สามารถใช้เทคโนโลยี
-                สร้างสิ่งที่มีคุณค่าและช่วยแก้ปัญหาให้กับผู้คนได้จริง
-                เพราะสำหรับหนู การเขียนโปรแกรมไม่ได้เป็นเพียงการเขียนโค้ด
-                แต่เป็นการเปลี่ยนความคิดให้กลายเป็นสิ่งที่เกิดขึ้นได้
-            </p>
-            <a href="#contact" class="btn-primary">Let's Connect ↗</a>
+      </article>
+      <article class="timeline-item reveal">
+        <strong>2024–25</strong>
+        <div>
+          <small>PROGRAMMING COMPETITION</small>
+          <h3>การแข่งขันเขียนโปรแกรมด้วยภาษาคอมพิวเตอร์</h3>
+          <p>ได้รับรางวัลระดับเหรียญเงิน และรางวัลรองชนะเลิศอันดับที่ 2 ตามรายการแข่งขัน</p>
         </div>
-
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-
-        <div class="section-heading">
-            <span class="section-label">06 — GET IN TOUCH</span>
-            <h2>Let's create something <span>great.</span></h2>
-            <p>ขอบคุณที่แวะเข้ามาทำความรู้จักกับหนูค่ะ</p>
+      </article>
+      <article class="timeline-item reveal">
+        <strong>2025</strong>
+        <div>
+          <small>SCIENCE COMPETITION</small>
+          <h3>การแข่งขันตอบปัญหาทางวิทยาศาสตร์</h3>
+          <p>ได้รับรางวัลรองชนะเลิศอันดับที่ 2 ในกิจกรรมสัปดาห์วันวิทยาศาสตร์แห่งชาติ</p>
         </div>
+      </article>
+    </div>
+  </section>
 
-        <div class="contact-card">
+  <section class="section" id="activities">
+    <div class="section-title reveal">
+      <p>04 / LEARNING JOURNEY</p>
+      <h2>Beyond the <span>classroom.</span></h2>
+      <p>กิจกรรมและค่ายที่เปิดมุมมองการเรียนรู้</p>
+    </div>
 
-            <div>
-                <span class="contact-label">HAVE A QUESTION OR IDEA?</span>
-                <h3>Let's talk!</h3>
-                <p>สามารถติดต่อหนูผ่านอีเมลได้เลยค่ะ</p>
-            </div>
+    <div class="activity-grid">
+      <article class="glass activity-card reveal">
+        <div class="activity-icon">💻</div>
+        <small>COMPUTER SCIENCE CAMP</small>
+        <h3>I CS YOU CAMP 2026</h3>
+        <p>ภาควิชาวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ ได้เรียนรู้และทดลองทำกิจกรรมด้านคอมพิวเตอร์</p>
+      </article>
+      <article class="glass activity-card reveal">
+        <div class="activity-icon">⚙️</div>
+        <small>ENGINEERING CAMP</small>
+        <h3>CESCA</h3>
+        <p>ค่ายเยาวชนวิศวกรรมศาสตร์ภาคฤดูร้อน ณ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยขอนแก่น</p>
+      </article>
+      <article class="glass activity-card reveal">
+        <div class="activity-icon">🤖</div>
+        <small>ROBOTICS</small>
+        <h3>ค่ายพัฒนาทักษะหุ่นยนต์</h3>
+        <p>เรียนรู้การเขียนโปรแกรม การควบคุมอุปกรณ์ และการนำความรู้มาสร้างเป็นผลงานจริง</p>
+      </article>
+      <article class="glass activity-card reveal">
+        <div class="activity-icon">🛡️</div>
+        <small>ONLINE COURSE</small>
+        <h3>Cybersecurity Foundation Course</h3>
+        <p>หลักสูตรด้านความมั่นคงปลอดภัยไซเบอร์ของสำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ (NCSA)</p>
+      </article>
+      <article class="glass activity-card reveal">
+        <div class="activity-icon">🎨</div>
+        <small>SCHOOL ACTIVITIES</small>
+        <h3>ฝ่ายศิลป์และกิจกรรมกีฬาสี</h3>
+        <p>ร่วมออกแบบและจัดทำอุปกรณ์ เป็นสต๊าฟหลีด ประสานงาน และร่วมถือแบ็กดรอปในงานกีฬาอำเภอ</p>
+      </article>
+      <article class="glass activity-card reveal">
+        <div class="activity-icon">🕯️</div>
+        <small>VOLUNTEER & CULTURE</small>
+        <h3>กิจกรรมหล่อเทียนพรรษา</h3>
+        <p>ร่วมหล่อเทียนกับครูและเพื่อน ๆ ก่อนนำไปถวาย ณ วัดขนาน เพื่อสืบสานประเพณีและวัฒนธรรมไทย</p>
+      </article>
+    </div>
+  </section>
 
-            <a href="mailto:cxx1382@gmail.com" class="email-link">
-                cxx1382@gmail.com ↗
-            </a>
+  <section class="section vision reveal">
+    <p>05 / MY GOAL</p>
+    <h2>From curiosity<br>to <span>creation.</span></h2>
+    <p>
+      หนูอยากพัฒนาตัวเองในสาขาวิทยาการคอมพิวเตอร์ให้มีทั้งความรู้
+      และทักษะในการลงมือทำ และนำสิ่งที่ได้เรียนรู้ไปต่อยอดเป็นผลงาน
+      และเทคโนโลยีที่สามารถสร้างประโยชน์ได้จริง
+    </p>
+  </section>
 
-            <button class="copy-btn" id="copyEmail">
-                Copy Email
-            </button>
+  <section class="section" id="contact">
+    <div class="section-title reveal">
+      <p>06 / CONTACT</p>
+      <h2>Let's connect <span>together.</span></h2>
+      <p>ขอบคุณที่เข้ามาทำความรู้จักและเยี่ยมชม Portfolio ของหนู</p>
+    </div>
+    <div class="glass contact-card reveal">
+      <div>
+        <small>GET IN TOUCH</small>
+        <h3>Wannapa Intarat</h3>
+        <p>Computer Science Applicant · Portfolio 2026</p>
+      </div>
+      <a href="mailto:cxx1382@gmail.com">cxx1382@gmail.com ↗</a>
+      <button id="copyEmail">Copy email</button>
+    </div>
+  </section>
+</main>
 
-        </div>
-    </section>
+<footer>
+  <a href="#home" class="logo">N<span>.</span></a>
+  <p>Designed & built with curiosity by Wannapa Intarat</p>
+  <small>© 2026 NUENG PORTFOLIO</small>
+</footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <a href="#home" class="logo">NUENG<span>.</span></a>
+<div class="toast" id="toast"></div>
 
-        <p>Designed & Built with curiosity by Wannapa Intarat.</p>
-
-        <p>© <span id="year"></span> NUENG. All rights reserved.</p>
-
-        <a href="#home" class="back-top">BACK TO TOP ↑</a>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
