@@ -1,25 +1,15 @@
 
-/* =================================
-   NUENG PORTFOLIO - JAVASCRIPT
-================================= */
+// =============================
+// NUENG PORTFOLIO JAVASCRIPT
+// =============================
 
-// 1. CURRENT YEAR
-const yearElement = document.getElementById("year");
-
-if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-}
-
-
-// 2. TYPING ANIMATION
-const typingElement = document.getElementById("typing");
+// 1. Typing animation
+const typingText = document.getElementById("typingText");
 
 const words = [
-    "Programming.",
-    "Technology.",
-    "Web Development.",
-    "Artificial Intelligence.",
-    "Computer Science."
+  "Computer Scientist",
+  "Problem Solver",
+  "Technology Creator"
 ];
 
 let wordIndex = 0;
@@ -27,190 +17,154 @@ let charIndex = 0;
 let deleting = false;
 
 function typeEffect() {
+  if (!typingText) return;
 
-    if (!typingElement) return;
+  const word = words[wordIndex];
 
-    const currentWord = words[wordIndex];
+  if (!deleting) {
+    charIndex++;
+    typingText.textContent = word.substring(0, charIndex);
 
-    if (deleting) {
-        charIndex--;
-    } else {
-        charIndex++;
+    if (charIndex === word.length) {
+      deleting = true;
+      setTimeout(typeEffect, 1200);
+      return;
     }
+  } else {
+    charIndex--;
+    typingText.textContent = word.substring(0, charIndex);
 
-    typingElement.textContent = currentWord.substring(0, charIndex);
-
-    let speed = deleting ? 45 : 100;
-
-    if (!deleting && charIndex === currentWord.length) {
-        deleting = true;
-        speed = 1300;
+    if (charIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
     }
+  }
 
-    if (deleting && charIndex === 0) {
-        deleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        speed = 400;
-    }
-
-    setTimeout(typeEffect, speed);
+  setTimeout(typeEffect, deleting ? 45 : 85);
 }
 
 typeEffect();
 
 
-// 3. MOBILE MENU
+// 2. Mobile menu
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
 
-    navLinks.classList.toggle("open");
-
-    menuToggle.textContent =
-        navLinks.classList.contains("open") ? "✕" : "☰";
-
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+  });
 });
 
 
-// Close menu after clicking a link
-document.querySelectorAll(".nav-links a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navLinks.classList.remove("open");
-        menuToggle.textContent = "☰";
-
-    });
-
-});
-
-
-// 4. SCROLL REVEAL ANIMATION
-const revealElements = document.querySelectorAll(
-    ".section, .project-card"
-);
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("visible");
-
-            observer.unobserve(entry.target);
-
-        }
-
-    });
-
-}, {
-    threshold: 0.12
-});
-
-revealElements.forEach(element => {
-    observer.observe(element);
-});
-
-
-// 5. DARK MODE
+// 3. Dark / Light mode
 const themeToggle = document.getElementById("themeToggle");
 
 const savedTheme = localStorage.getItem("nueng-theme");
 
-if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-    themeToggle.textContent = "☀";
+if (savedTheme === "light") {
+  document.body.classList.add("light-theme");
+  themeToggle.textContent = "☾";
 }
 
 themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light-theme");
 
-    document.body.classList.toggle("dark");
+  const isLight = document.body.classList.contains("light-theme");
 
-    const isDark = document.body.classList.contains("dark");
+  localStorage.setItem(
+    "nueng-theme",
+    isLight ? "light" : "dark"
+  );
 
-    themeToggle.textContent = isDark ? "☀" : "☾";
-
-    localStorage.setItem(
-        "nueng-theme",
-        isDark ? "dark" : "light"
-    );
-
+  themeToggle.textContent = isLight ? "☾" : "☼";
 });
 
 
-// 6. COPY EMAIL
+// 4. Scroll reveal animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+
+
+// 5. Profile card mouse tilt
+const profileCard = document.querySelector(".profile-card");
+
+if (profileCard && window.matchMedia("(pointer:fine)").matches) {
+  profileCard.addEventListener("mousemove", event => {
+    const rect = profileCard.getBoundingClientRect();
+
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    profileCard.style.transform =
+      `rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+  });
+
+  profileCard.addEventListener("mouseleave", () => {
+    profileCard.style.transform = "rotateY(0) rotateX(0)";
+  });
+}
+
+
+// 6. Copy email
 const copyButton = document.getElementById("copyEmail");
+const toast = document.getElementById("toast");
+
+const email = "cxx1382@gmail.com";
 
 copyButton.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(email);
+    toast.textContent = "คัดลอกอีเมลเรียบร้อยแล้ว!";
+  } catch {
+    toast.textContent = email;
+  }
 
-    const email = "cxx1382@gmail.com";
+  toast.classList.add("show");
 
-    try {
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
+});
 
-        await navigator.clipboard.writeText(email);
 
-        copyButton.textContent = "Copied! ✓";
+// 7. Active navigation on scroll
+const sections = document.querySelectorAll("main section[id]");
+const navItems = document.querySelectorAll("nav a");
 
-    } catch (error) {
-
-        window.prompt("Copy this email:", email);
-
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navItems.forEach(link => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === `#${entry.target.id}`
+        );
+      });
     }
-
-    setTimeout(() => {
-        copyButton.textContent = "Copy Email";
-    }, 2000);
-
-});
-
-
-// 7. ACTIVE NAVIGATION
-const pageSections = document.querySelectorAll(
-    "section[id]"
-);
-
-const navItems = document.querySelectorAll(
-    ".nav-links a"
-);
-
-const activeObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            navItems.forEach(link => {
-
-                link.classList.remove("active");
-
-                if (
-                    link.getAttribute("href") ===
-                    "#" + entry.target.id
-                ) {
-                    link.classList.add("active");
-                }
-
-            });
-
-        }
-
-    });
-
+  });
 }, {
-    rootMargin: "-30% 0px -60% 0px"
+  rootMargin: "-35% 0px -55% 0px"
 });
 
-pageSections.forEach(section => {
-    activeObserver.observe(section);
+sections.forEach(section => {
+  sectionObserver.observe(section);
 });
 
-
-// 8. WELCOME MESSAGE
-console.log(
-    "%c Welcome to NUENG Portfolio! ",
-    "background:#8055db;color:white;padding:10px;border-radius:8px;font-size:16px;"
-);
-
-console.log("Designed and developed by Wannapa Intarat.");
+console.log("NUENG PORTFOLIO — HTML CSS JavaScript");
