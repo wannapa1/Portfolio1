@@ -1462,3 +1462,16 @@ body.light-theme::before {
 .network-project {
     background: var(--surface) !important;
 }
+.project-feature,
+.network-project {
+    background: var(--surface) !important;
+    box-shadow: none !important;
+}
+
+body.light-theme .award-highlight {
+    background: var(--surface) !important;
+}
+
+body.light-theme .project-image {
+    box-shadow: none;
+}
