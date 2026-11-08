@@ -1,18 +1,19 @@
 
-/* =================================
+/* =========================================
    NUENG PORTFOLIO
-   JAVASCRIPT
-================================= */
+   COMPLETE JAVASCRIPT
+========================================= */
 
-// 1. TYPING ANIMATION
+
+/* 01. TYPING EFFECT */
 
 const typingElement = document.getElementById("typing");
 
 const words = [
     "Programming.",
     "Computer Science.",
-    "Artificial Intelligence.",
     "Web Development.",
+    "Artificial Intelligence.",
     "Technology."
 ];
 
@@ -20,20 +21,26 @@ let wordIndex = 0;
 let charIndex = 0;
 let deleting = false;
 
-function typingEffect() {
-    const word = words[wordIndex];
+function typeEffect() {
+    if (!typingElement) return;
 
-    typingElement.textContent = word.substring(0, charIndex);
+    const currentWord = words[wordIndex];
 
     if (!deleting) {
+        typingElement.textContent =
+            currentWord.substring(0, charIndex + 1);
+
         charIndex++;
 
-        if (charIndex > word.length) {
+        if (charIndex === currentWord.length) {
             deleting = true;
-            setTimeout(typingEffect, 1200);
+            setTimeout(typeEffect, 1400);
             return;
         }
     } else {
+        typingElement.textContent =
+            currentWord.substring(0, charIndex - 1);
+
         charIndex--;
 
         if (charIndex === 0) {
@@ -42,305 +49,332 @@ function typingEffect() {
         }
     }
 
-    setTimeout(typingEffect, deleting ? 45 : 100);
+    setTimeout(typeEffect, deleting ? 45 : 90);
 }
 
-typingEffect();
+typeEffect();
 
 
-// 2. MOBILE MENU
-
-const menuBtn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
-
-menuBtn.addEventListener("click", () => {
-    nav.classList.toggle("show");
-});
-
-document.querySelectorAll("#nav a").forEach(link => {
-    link.addEventListener("click", () => {
-        nav.classList.remove("show");
-    });
-});
-
-
-// 3. DARK / LIGHT MODE
-
-const themeBtn = document.getElementById("themeBtn");
-
-function setTheme(theme) {
-    document.body.classList.toggle("dark", theme === "dark");
-    themeBtn.textContent = theme === "dark" ? "☀" : "☾";
-    localStorage.setItem("nueng-theme", theme);
-}
-
-const savedTheme = localStorage.getItem("nueng-theme");
-
-if (savedTheme) {
-    setTheme(savedTheme);
-}
-
-themeBtn.addEventListener("click", () => {
-    const newTheme = document.body.classList.contains("dark")
-        ? "light"
-        : "dark";
-
-    setTheme(newTheme);
-});
-
-
-// 4. SCROLL PROGRESS BAR
+/* 02. SCROLL PROGRESS */
 
 const progress = document.getElementById("progress");
 
 function updateProgress() {
     const scrollTop = window.scrollY;
-    const pageHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
 
-    const percentage = pageHeight > 0
-        ? (scrollTop / pageHeight) * 100
+    const docHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    const percentage = docHeight > 0
+        ? (scrollTop / docHeight) * 100
         : 0;
 
-    progress.style.width = percentage + "%";
+    if (progress) {
+        progress.style.width = percentage + "%";
+    }
 }
 
 window.addEventListener("scroll", updateProgress);
 
+updateProgress();
 
-// 5. SCROLL REVEAL
+
+/* 03. MOBILE NAVIGATION */
+
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+
+if (menuBtn && nav) {
+
+    menuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+
+        menuBtn.textContent =
+            nav.classList.contains("active") ? "✕" : "☰";
+    });
+
+    nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            nav.classList.remove("active");
+            menuBtn.textContent = "☰";
+        });
+    });
+
+    document.addEventListener("click", event => {
+        if (
+            !nav.contains(event.target) &&
+            !menuBtn.contains(event.target)
+        ) {
+            nav.classList.remove("active");
+            menuBtn.textContent = "☰";
+        }
+    });
+}
+
+
+/* 04. DARK / LIGHT MODE */
+
+const themeBtn = document.getElementById("themeBtn");
+
+if (themeBtn) {
+
+    themeBtn.addEventListener("click", () => {
+
+        document.body.classList.toggle("light-theme");
+
+        const isLight =
+            document.body.classList.contains("light-theme");
+
+        themeBtn.textContent = isLight ? "☀" : "☾";
+
+        themeBtn.setAttribute(
+            "aria-label",
+            isLight ? "Switch to dark theme" : "Switch to light theme"
+        );
+
+    });
+
+}
+
+
+/* 05. SCROLL REVEAL */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
     entries => {
+
         entries.forEach(entry => {
+
             if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+
+                entry.target.classList.add("show");
+
                 revealObserver.unobserve(entry.target);
+
             }
+
         });
+
     },
     {
         threshold: 0.12
     }
 );
 
-document.querySelectorAll(".reveal").forEach(element => {
+revealElements.forEach(element => {
     revealObserver.observe(element);
 });
 
 
-// 6. BACK TO TOP
-
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-    topBtn.classList.toggle("show", window.scrollY > 500);
-});
-
-topBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
-
-
-// 7. ACTIVE NAVIGATION
-
-const sections = document.querySelectorAll("main section[id]");
-const navLinks = document.querySelectorAll("#nav a");
-
-const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            navLinks.forEach(link => {
-                link.classList.toggle(
-                    "active",
-                    link.getAttribute("href") === "#" + entry.target.id
-                );
-            });
-        }
-    });
-}, {
-    threshold: 0.3
-});
-
-sections.forEach(section => {
-    sectionObserver.observe(section);
-});
-
-
-// 8. CERTIFICATE GALLERY
-
-// นำรูปเกียรติบัตรจริงมาใส่ใน
-// assets/certificates/
-// แล้วตั้งชื่อตามรายการนี้
-
-const certificates = [
-    {
-        title: "Thailand Cyber Top Talent 2026",
-        image: "cert-01.jpg"
-    },
-    {
-        title: "เหรียญเงิน แข่งขันเขียนโปรแกรม ครั้งที่ 73",
-        image: "cert-02.jpg"
-    },
-    {
-        title: "รองชนะเลิศอันดับ 2 แข่งขันเขียนโปรแกรม ครั้งที่ 72",
-        image: "cert-03.jpg"
-    },
-    {
-        title: "Thailand Cyber Top Talent 2025",
-        image: "cert-04.jpg"
-    },
-    {
-        title: "เหรียญเงิน แข่งขันหุ่นยนต์ระดับสูง ครั้งที่ 73",
-        image: "cert-05.jpg"
-    },
-    {
-        title: "รองชนะเลิศอันดับ 2 ตอบปัญหาวิทยาศาสตร์",
-        image: "cert-06.jpg"
-    },
-    {
-        title: "Cybersecurity Professional Course - NCSA",
-        image: "cert-07.jpg"
-    },
-    {
-        title: "Learn Coding Basics - CHULA MOOC",
-        image: "cert-08.jpg"
-    },
-    {
-        title: "Introduction to Data Analytics, AI and ML",
-        image: "cert-09.jpg"
-    },
-    {
-        title: "I CS YOU CAMP 2026",
-        image: "cert-10.jpg"
-    },
-    {
-        title: "CESCA ครั้งที่ 21",
-        image: "cert-11.jpg"
-    },
-    {
-        title: "ค่ายพัฒนาทักษะหุ่นยนต์",
-        image: "cert-12.jpg"
-    },
-    {
-        title: "THR RoV E-Sport",
-        image: "cert-13.jpg"
-    },
-    {
-        title: "ขนาบน้ำ จามจุรี จุฬา–กระบี่ ครั้งที่ 3",
-        image: "cert-14.jpg"
-    },
-    {
-        title: "ตอบปัญหาวันสถาปนาโรงเรียน",
-        image: "cert-15.jpg"
-    },
-    {
-        title: "โครงการพี่สอนน้อง ครั้งที่ 3",
-        image: "cert-16.jpg"
-    },
-    {
-        title: "โครงการธรรมะสานใจห่างไกลยาเสพติด",
-        image: "cert-17.jpg"
-    },
-    {
-        title: "โครงการคลินิกเกษตรเคลื่อนที่",
-        image: "cert-18.jpg"
-    }
-];
+/* 06. CERTIFICATE GALLERY */
 
 const certificateGrid =
     document.getElementById("certificateGrid");
 
-certificates.forEach((certificate, index) => {
+const certificates = [
+    {
+        image: "assets/certificate1.jpg",
+        title: "Certificate 01"
+    },
+    {
+        image: "assets/certificate2.jpg",
+        title: "Certificate 02"
+    },
+    {
+        image: "assets/certificate3.jpg",
+        title: "Certificate 03"
+    },
+    {
+        image: "assets/certificate4.jpg",
+        title: "Certificate 04"
+    },
+    {
+        image: "assets/certificate5.jpg",
+        title: "Certificate 05"
+    },
+    {
+        image: "assets/certificate6.jpg",
+        title: "Certificate 06"
+    }
+];
 
-    const card = document.createElement("div");
-    card.className = "certificate-card reveal";
+if (certificateGrid) {
 
-    const image = document.createElement("img");
-    image.src = "assets/certificates/" + certificate.image;
-    image.alt = certificate.title;
-    image.loading = "lazy";
+    certificates.forEach((certificate, index) => {
 
-    image.onerror = () => {
-        image.remove();
+        const img = document.createElement("img");
 
-        const placeholder = document.createElement("div");
-        placeholder.style.cssText = `
-            height:190px;
-            background:var(--surface2);
-            display:grid;
-            place-items:center;
-            color:var(--purple);
-            font-size:35px;
-        `;
-        placeholder.textContent = "✧";
-        card.prepend(placeholder);
-    };
+        img.src = certificate.image;
+        img.alt = certificate.title;
+        img.loading = "lazy";
 
-    const caption = document.createElement("p");
-    caption.textContent =
-        String(index + 1).padStart(2, "0") +
-        " / " + certificate.title;
+        img.addEventListener("click", () => {
+            openLightbox(certificate.image, certificate.title);
+        });
 
-    card.appendChild(image);
-    card.appendChild(caption);
+        img.addEventListener("error", () => {
+            img.style.display = "none";
+        });
 
-    card.addEventListener("click", () => {
-        openCertificate(
-            "assets/certificates/" + certificate.image,
-            certificate.title
-        );
+        certificateGrid.appendChild(img);
+
     });
 
-    certificateGrid.appendChild(card);
-    revealObserver.observe(card);
-});
+}
 
 
-// 9. CERTIFICATE LIGHTBOX
+/* 07. LIGHTBOX */
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxCaption = document.getElementById("lightboxCaption");
 const closeLightbox = document.getElementById("closeLightbox");
 
-function openCertificate(image, title) {
+function openLightbox(image, title) {
+
+    if (!lightbox) return;
+
     lightboxImage.src = image;
     lightboxCaption.textContent = title;
-    lightbox.classList.add("show");
+
+    lightbox.classList.add("active");
+
     document.body.style.overflow = "hidden";
 }
 
-function closeCertificate() {
-    lightbox.classList.remove("show");
-    document.body.style.overflow = "";
+function closeLightboxView() {
+
+    if (!lightbox) return;
+
+    lightbox.classList.remove("active");
+
     lightboxImage.src = "";
+
+    document.body.style.overflow = "";
 }
 
-closeLightbox.addEventListener("click", closeCertificate);
+if (closeLightbox) {
+    closeLightbox.addEventListener(
+        "click",
+        closeLightboxView
+    );
+}
 
-lightbox.addEventListener("click", event => {
-    if (event.target === lightbox) {
-        closeCertificate();
-    }
-});
+if (lightbox) {
+
+    lightbox.addEventListener("click", event => {
+
+        if (event.target === lightbox) {
+            closeLightboxView();
+        }
+
+    });
+
+}
 
 document.addEventListener("keydown", event => {
+
     if (event.key === "Escape") {
-        closeCertificate();
+        closeLightboxView();
     }
+
 });
 
 
-// 10. IMAGE LOADING
+/* 08. BACK TO TOP */
 
-document.querySelectorAll("img").forEach(image => {
-    image.addEventListener("load", () => {
-        image.classList.add("loaded");
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+
+    if (!topBtn) return;
+
+    if (window.scrollY > 450) {
+        topBtn.classList.add("show");
+    } else {
+        topBtn.classList.remove("show");
+    }
+
+});
+
+if (topBtn) {
+
+    topBtn.addEventListener("click", () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
     });
+
+}
+
+
+/* 09. ACTIVE NAVIGATION */
+
+const sections = document.querySelectorAll("main section[id]");
+
+const navLinks = document.querySelectorAll(".navbar nav a");
+
+const activeObserver = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                navLinks.forEach(link => {
+
+                    link.classList.remove("active-link");
+
+                    if (
+                        link.getAttribute("href") ===
+                        "#" + entry.target.id
+                    ) {
+                        link.classList.add("active-link");
+                    }
+
+                });
+
+            }
+
+        });
+
+    },
+    {
+        rootMargin: "-35% 0px -55% 0px"
+    }
+);
+
+sections.forEach(section => {
+    activeObserver.observe(section);
 });
 
-console.log("NUENG PORTFOLIO READY!");
+
+/* 10. IMAGE LOADING EFFECT */
+
+document.querySelectorAll("img").forEach(img => {
+
+    img.addEventListener("load", () => {
+        img.classList.add("loaded");
+    });
+
+});
+
+
+/* 11. CONSOLE MESSAGE */
+
+console.log(
+    "%c NUENG PORTFOLIO ",
+    "background:#8064c8;color:white;font-size:20px;padding:10px;"
+);
+
+console.log(
+    "Designed & Developed by Wannapa Intarat"
+);
+
+console.log("Welcome to my portfolio!");
