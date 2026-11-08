@@ -8,7 +8,7 @@
 
 :root {
     --bg: #111426;
-    --bg-soft: #171b30;
+    --bg-soft: #111426;
     --surface: #1c2138;
     --surface-light: #242a43;
     --purple: #aa91e8;
@@ -17,7 +17,7 @@
     --gold: #d6b879;
     --white: #f7f5f0;
     --text: #e8e7ef;
-    --muted: #b8bbca;
+    --muted: #e8e7ef;
     --line: rgba(255,255,255,.12);
     --heading: 'DM Sans', sans-serif;
     --thai: 'Kanit', sans-serif;
@@ -25,6 +25,19 @@
     --radius: 22px;
     --shadow: 0 20px 60px rgba(0,0,0,.25);
 }
+
+body.light-theme {
+    --bg: #ffffff;
+    --bg-soft: #ffffff;
+    --surface: #ffffff;
+    --surface-light: #ffffff;
+    --white: #29263a;
+    --text: #38354a;
+    --muted: #38354a;
+    --line: rgba(40,30,65,.12);
+    --shadow: 0 15px 40px rgba(50,40,70,.08);
+}
+
 
 /* LIGHT THEME */
 body.light-theme {
@@ -1441,4 +1454,8 @@ footer p {
 
 .network-sticker .sticker-content p {
     color: #9de4df !important;
+}
+body::before,
+body.light-theme::before {
+    display: none;
 }
