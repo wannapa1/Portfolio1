@@ -1374,132 +1374,71 @@ footer p {
         transition: none !important;
     }
 }
+/* =================================
+   PROJECT IMAGE - AEGIS & NETWORK
+================================= */
 
-/* COMPUTER STICKER */
-
-.computer-sticker {
-    min-height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background:
-        radial-gradient(circle at center, #34345f, transparent 65%),
-        linear-gradient(135deg, #202945, #151a30);
-    border-radius: 18px;
-}
-
-.network-sticker {
-    background:
-        radial-gradient(circle at center, #24565d, transparent 65%),
-        linear-gradient(135deg, #202945, #151a30);
-}
-
-.sticker-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.computer-emoji {
-    font-size: 100px;
-    line-height: 1.3;
-    position: static !important;
-    display: block;
-    filter: drop-shadow(0 12px 15px #0005);
-}
-
-.sticker-content h3 {
-    color: #f7f5f0;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 27px;
-    letter-spacing: 4px;
-}
-
-.sticker-content p {
-    color: #c5b4ed;
-    font-size: 11px;
-    letter-spacing: 3px;
-}
-
-
-/* PROJECT COLOR FIX */
-
-.project-feature {
-    background: #1c2138 !important;
-    border: 1px solid #aa91e855 !important;
-}
-
-.project-heading {
-    background: #202945 !important;
-    color: #d6b879 !important;
-}
-
-.project-text h3 {
-    color: #f7f5f0 !important;
-}
-
-.project-text p {
-    color: #c3c5d5 !important;
-}
-
-.project-text h4 {
-    color: #aa91e8 !important;
-}
-
-/* NETWORK IMAGE */
-.network-sticker {
-    background:
-        radial-gradient(circle at 50% 40%, #315b83, transparent 65%),
-        linear-gradient(145deg, #17243e, #101827) !important;
-    border: 1px solid #91a9e955;
-}
-
-/* AEGIS IMAGE */
-.computer-sticker {
-    background:
-        radial-gradient(circle at 50% 40%, #51417d, transparent 65%),
-        linear-gradient(145deg, #24213f, #101827) !important;
-    border: 1px solid #aa91e855;
-}
-
-.project-insights {
-    background: #1c2138 !important;
-}
-
-.project-insights > div {
-    border-color: #ffffff20 !important;
-}
-
-.project-insights h4 {
-    color: #f7f5f0 !important;
-}
-
-.project-insights p {
-    color: #b8bbca !important;
-}
-/* FORCE REMOVE GREY BACKGROUND */
 .project-image.computer-sticker {
+    width: 100%;
+    min-height: 350px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    overflow: hidden;
+    border-radius: 18px;
     background: radial-gradient(
         circle at center,
-        #34316b 0%,
-        #1b1b3a 65%,
-        #111426 100%
+        #51417d 0%,
+        #24213f 60%,
+        #101827 100%
     ) !important;
-
-    background-color: #1b1b3a !important;
-    border: none !important;
-    box-shadow: none !important;
+    border: 1px solid #aa91e855;
 }
 
 .project-image.network-sticker {
     background: radial-gradient(
         circle at center,
-        #174b50 0%,
+        #315b83 0%,
         #172d3c 65%,
-        #111426 100%
+        #101827 100%
     ) !important;
+    border: 1px solid #91a9e955;
 }
 
+.sticker-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.computer-emoji {
+    display: block;
+    position: static !important;
+    font-size: 100px;
+    line-height: 1.3;
+}
+
+.sticker-content h3 {
+    color: #ffffff !important;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.sticker-content p {
+    color: #c5b4ed !important;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.network-sticker .sticker-content p {
+    color: #9de4df !important;
+}
