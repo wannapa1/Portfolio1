@@ -1,7 +1,7 @@
 
 /* =========================================
    NUENG PORTFOLIO
-   COMPLETE JAVASCRIPT
+   SLOW & SMOOTH COMPLETE JAVASCRIPT
 ========================================= */
 
 
@@ -34,7 +34,7 @@ function typeEffect() {
 
         if (charIndex === currentWord.length) {
             deleting = true;
-            setTimeout(typeEffect, 1400);
+            setTimeout(typeEffect, 2200);
             return;
         }
     } else {
@@ -49,7 +49,7 @@ function typeEffect() {
         }
     }
 
-    setTimeout(typeEffect, deleting ? 45 : 90);
+    setTimeout(typeEffect, deleting ? 100 : 160);
 }
 
 typeEffect();
@@ -76,7 +76,6 @@ function updateProgress() {
 }
 
 window.addEventListener("scroll", updateProgress);
-
 updateProgress();
 
 
@@ -118,7 +117,6 @@ if (menuBtn && nav) {
 const themeBtn = document.getElementById("themeBtn");
 
 if (themeBtn) {
-
     themeBtn.addEventListener("click", () => {
 
         document.body.classList.toggle("light-theme");
@@ -132,20 +130,17 @@ if (themeBtn) {
             "aria-label",
             isLight ? "Switch to dark theme" : "Switch to light theme"
         );
-
     });
-
 }
 
 
-/* 05. SCROLL REVEAL */
+/* 05. SLOW SCROLL REVEAL */
 
 const revealElements =
     document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
     entries => {
-
         entries.forEach(entry => {
 
             if (entry.isIntersecting) {
@@ -153,14 +148,11 @@ const revealObserver = new IntersectionObserver(
                 entry.target.classList.add("show");
 
                 revealObserver.unobserve(entry.target);
-
             }
-
         });
-
     },
     {
-        threshold: 0.12
+        threshold: 0.10
     }
 );
 
@@ -203,7 +195,7 @@ const certificates = [
 
 if (certificateGrid) {
 
-    certificates.forEach((certificate, index) => {
+    certificates.forEach(certificate => {
 
         const img = document.createElement("img");
 
@@ -212,7 +204,10 @@ if (certificateGrid) {
         img.loading = "lazy";
 
         img.addEventListener("click", () => {
-            openLightbox(certificate.image, certificate.title);
+            openLightbox(
+                certificate.image,
+                certificate.title
+            );
         });
 
         img.addEventListener("error", () => {
@@ -220,9 +215,7 @@ if (certificateGrid) {
         });
 
         certificateGrid.appendChild(img);
-
     });
-
 }
 
 
@@ -235,13 +228,15 @@ const closeLightbox = document.getElementById("closeLightbox");
 
 function openLightbox(image, title) {
 
-    if (!lightbox) return;
+    if (!lightbox || !lightboxImage) return;
 
     lightboxImage.src = image;
-    lightboxCaption.textContent = title;
+
+    if (lightboxCaption) {
+        lightboxCaption.textContent = title;
+    }
 
     lightbox.classList.add("active");
-
     document.body.style.overflow = "hidden";
 }
 
@@ -250,9 +245,6 @@ function closeLightboxView() {
     if (!lightbox) return;
 
     lightbox.classList.remove("active");
-
-    lightboxImage.src = "";
-
     document.body.style.overflow = "";
 }
 
@@ -270,9 +262,7 @@ if (lightbox) {
         if (event.target === lightbox) {
             closeLightboxView();
         }
-
     });
-
 }
 
 document.addEventListener("keydown", event => {
@@ -280,7 +270,6 @@ document.addEventListener("keydown", event => {
     if (event.key === "Escape") {
         closeLightboxView();
     }
-
 });
 
 
@@ -297,7 +286,6 @@ window.addEventListener("scroll", () => {
     } else {
         topBtn.classList.remove("show");
     }
-
 });
 
 if (topBtn) {
@@ -308,17 +296,17 @@ if (topBtn) {
             top: 0,
             behavior: "smooth"
         });
-
     });
-
 }
 
 
 /* 09. ACTIVE NAVIGATION */
 
-const sections = document.querySelectorAll("main section[id]");
+const sections =
+    document.querySelectorAll("main section[id]");
 
-const navLinks = document.querySelectorAll(".navbar nav a");
+const navLinks =
+    document.querySelectorAll(".navbar nav a");
 
 const activeObserver = new IntersectionObserver(
     entries => {
@@ -337,13 +325,9 @@ const activeObserver = new IntersectionObserver(
                     ) {
                         link.classList.add("active-link");
                     }
-
                 });
-
             }
-
         });
-
     },
     {
         rootMargin: "-35% 0px -55% 0px"
@@ -355,14 +339,17 @@ sections.forEach(section => {
 });
 
 
-/* 10. IMAGE LOADING EFFECT */
+/* 10. IMAGE LOADING */
 
 document.querySelectorAll("img").forEach(img => {
 
-    img.addEventListener("load", () => {
+    if (img.complete) {
         img.classList.add("loaded");
-    });
-
+    } else {
+        img.addEventListener("load", () => {
+            img.classList.add("loaded");
+        });
+    }
 });
 
 
