@@ -1461,4 +1461,10 @@ footer p {
         animation-duration: .01ms !important;
         transition-duration: .01ms !important;
     }
+   /* ซ่อนลูกศรด้านขวาของรายการผลงาน */
+.activity-item > a,
+.award-item > a,
+.project-item > a {
+    display: none !important;
+}
 }
