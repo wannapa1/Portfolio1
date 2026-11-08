@@ -1502,4 +1502,10 @@ html {
     opacity: 1 !important;
     transform: none !important;
 }
-
+.photo-frame img {
+    display: block;
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
+}
