@@ -1536,3 +1536,82 @@ html {
     object-fit: cover;
     object-position: center;
 }
+.computer-visual {
+    min-height: 350px;
+    background: radial-gradient(circle at center, #253d66, #101827);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 35px 20px;
+}
+
+.computer-screen {
+    width: 75%;
+    max-width: 340px;
+    height: 190px;
+    background: #0b1120;
+    border: 7px solid #91a9c9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 35px #62b5ff55;
+}
+
+.screen-top {
+    background: #263752;
+    padding: 9px;
+    display: flex;
+    gap: 6px;
+}
+
+.screen-top span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #83c8ff;
+}
+
+.screen-content {
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.code-line {
+    color: #83d8ff;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.code-line.indent {
+    padding-left: 20px;
+    color: #b8f2d0;
+}
+
+.computer-stand {
+    width: 35px;
+    height: 30px;
+    background: #91a9c9;
+}
+
+.computer-base {
+    width: 100px;
+    height: 9px;
+    background: #b5c8e0;
+    border-radius: 10px;
+}
+
+.computer-visual > span {
+    color: #b8dfff;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 20px;
+}
+
+.network-visual {
+    background: radial-gradient(circle at center, #174b50, #101827);
+}
