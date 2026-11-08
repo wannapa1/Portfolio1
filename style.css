@@ -1425,3 +1425,59 @@ footer p {
 }
 
 
+/* PROJECT COLOR FIX */
+
+.project-feature {
+    background: #1c2138 !important;
+    border: 1px solid #aa91e855 !important;
+}
+
+.project-heading {
+    background: #202945 !important;
+    color: #d6b879 !important;
+}
+
+.project-text h3 {
+    color: #f7f5f0 !important;
+}
+
+.project-text p {
+    color: #c3c5d5 !important;
+}
+
+.project-text h4 {
+    color: #aa91e8 !important;
+}
+
+/* NETWORK IMAGE */
+.network-sticker {
+    background:
+        radial-gradient(circle at 50% 40%, #315b83, transparent 65%),
+        linear-gradient(145deg, #17243e, #101827) !important;
+    border: 1px solid #91a9e955;
+}
+
+/* AEGIS IMAGE */
+.computer-sticker {
+    background:
+        radial-gradient(circle at 50% 40%, #51417d, transparent 65%),
+        linear-gradient(145deg, #24213f, #101827) !important;
+    border: 1px solid #aa91e855;
+}
+
+.project-insights {
+    background: #1c2138 !important;
+}
+
+.project-insights > div {
+    border-color: #ffffff20 !important;
+}
+
+.project-insights h4 {
+    color: #f7f5f0 !important;
+}
+
+.project-insights p {
+    color: #b8bbca !important;
+}
+
