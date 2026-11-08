@@ -29,7 +29,7 @@
 /* LIGHT THEME */
 body.light-theme {
     --bg: #f5f2ed;
-    --bg-soft: #eee9e3;
+    --bg-soft: #f5f2ed;
     --surface: #ffffff;
     --surface-light: #f0ecf5;
     --white: #29263a;
