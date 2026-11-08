@@ -1480,4 +1480,26 @@ footer p {
 .project-insights p {
     color: #b8bbca !important;
 }
+/* FORCE REMOVE GREY BACKGROUND */
+.project-image.computer-sticker {
+    background: radial-gradient(
+        circle at center,
+        #34316b 0%,
+        #1b1b3a 65%,
+        #111426 100%
+    ) !important;
+
+    background-color: #1b1b3a !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.project-image.network-sticker {
+    background: radial-gradient(
+        circle at center,
+        #174b50 0%,
+        #172d3c 65%,
+        #111426 100%
+    ) !important;
+}
 
