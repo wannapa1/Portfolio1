@@ -1509,3 +1509,30 @@ html {
     object-fit: cover;
     object-position: center;
 }
+/* FIX PROFILE IMAGE */
+.hero-image {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+.photo-frame {
+    position: relative;
+    display: block !important;
+    width: 100%;
+    max-width: 420px;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 220px 220px 20px 20px;
+}
+
+.photo-frame img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+}
