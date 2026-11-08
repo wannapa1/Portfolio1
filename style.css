@@ -1459,3 +1459,6 @@ body::before,
 body.light-theme::before {
     display: none;
 }
+.network-project {
+    background: var(--surface) !important;
+}
